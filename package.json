@@ -1,0 +1,13 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kleberjr/chat.git",
+  "author": "Kleber Rodrigues <kleb3r.jr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.2",
+    "express": "^4.18.2"
+  }
+}
