@@ -5,6 +5,9 @@
   "repository": "git@github.com:kleberjr/chat.git",
   "author": "Kleber Rodrigues <kleb3r.jr@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/server.ts"
+  },
   "dependencies": {
     "dotenv": "^16.3.2",
     "express": "^4.18.2",
