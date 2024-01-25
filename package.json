@@ -6,7 +6,7 @@
   "author": "Kleber Rodrigues <kleb3r.jr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/server.ts"
+    "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/back/server.ts"
   },
   "dependencies": {
     "dotenv": "^16.3.2",
