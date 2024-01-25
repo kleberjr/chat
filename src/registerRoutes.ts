@@ -1,5 +1,7 @@
+import { join } from "path";
+
 export const registerRoutes = (app: any) => {
   app.get('/', (req, res) => {
-    res.send('<h1>Hello World!</h1>')
+    res.sendFile(join(__dirname, 'index.html'));
   });
 }
