@@ -3,6 +3,7 @@ import { config as dotenvConfig } from 'dotenv';
 import { createSocketServer } from './createSocketServer';
 import { createServer } from 'http';
 import { registerRoutes } from './registerRoutes';
+import { registerMiddlewares } from './registerMiddlewares';
 
 try {
   dotenvConfig();
@@ -10,6 +11,7 @@ try {
   const app = express();
   const httpServer = createServer(app);
   
+  registerMiddlewares(app);
   registerRoutes(app);
 
   createSocketServer(httpServer);
