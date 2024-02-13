@@ -7,6 +7,6 @@ export const createSocketServer = (httpServer: HttpServer) => {
   // TODO: initialize data structures
 
   io.on('connection', () => {
-    console.log('A connection was established.');
+    console.log('WS: A connection was established.');
   })
 }
