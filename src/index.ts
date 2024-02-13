@@ -11,6 +11,7 @@ try {
   const app = express();
   const httpServer = createServer(app);
   
+  app.use(express.json());
   registerMiddlewares(app);
   registerRoutes(app);
 
