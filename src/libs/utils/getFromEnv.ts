@@ -1,4 +1,4 @@
-export default function getFromEnv(key: string) {
+export function getFromEnv(key: string) {
   const variable = process.env[key];
 
   if (!variable) {

@@ -1,6 +1,6 @@
 import { NextFunction, Request as Request, Response } from "express";
 import jwt from 'jsonwebtoken';
-import getFromEnv from "../utils/env.utils";
+import { getFromEnv } from "../libs/utils/getFromEnv";
 
 export const authenticationMiddleware = (
   req: Request, 

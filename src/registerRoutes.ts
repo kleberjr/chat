@@ -2,7 +2,7 @@ import { join } from "path";
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import { Request, Response } from "express";
-import { daysToMiliseconds } from "./utils/date.utils";
+import { daysToMiliseconds } from "./libs/utils/daysToMilliseconds";
 
 export const registerRoutes = (app: any) => {
   app.get('/', (req: Request, res: Response) => {
