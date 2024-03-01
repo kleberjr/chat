@@ -1,18 +1,21 @@
 import { join } from "path";
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import { Request, Response } from "express";
+import { Application, NextFunction, Request, Response } from "express";
 import { daysToMiliseconds } from "./libs/utils/daysToMilliseconds";
+import { WrongCredentialsError } from "./errors/wrongCredentials.error";
 
-export const registerRoutes = (app: any) => {
-  app.get('/', (req: Request, res: Response) => {
-    res.sendFile(join(__dirname, '/pages/index.html'));
+export const registerRoutes = (app: Application) => {
+  app.get('/home', (req: Request, res: Response) => {
+    res.sendFile(join(__dirname, '/pages/home.html'));
   });
 
-  app.post('/login', async (req: Request, res: Response) => {
+  app.get('/login', (req: Request, res: Response) => {
+    res.sendFile(join(__dirname, '/pages/login.html'));
+  });
+
+  app.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
-    console.log('>>> email:', email);
-    console.log('>>> password:', password);
 
     const prisma = new PrismaClient();
     const user = await prisma.user.findUnique({
@@ -20,16 +23,17 @@ export const registerRoutes = (app: any) => {
     });
 
     if (!user) {
-      throw new Error('Wrong credentials');
+      next(new WrongCredentialsError())
+      return;
     }
 
     const token = jwt.sign(
       { email, password },
       process.env.SECRET ?? ''
     );
-  
+
     res.cookie('session', token, {
-      maxAge: daysToMiliseconds(2), 
+      maxAge: daysToMiliseconds(2),
       secure: process.env.ENV === 'PROD',
       httpOnly: true,
       sameSite: 'strict',
@@ -38,8 +42,8 @@ export const registerRoutes = (app: any) => {
     res.send({ message: 'success' });
   });
 
-  app.post('/logout', async (req: Request, res: Response) => {
+  app.post('/logout', (req: Request, res: Response) => {
     res.clearCookie('session');
-    res.send({ message: 'sucess' });
+    res.send({ message: 'success' });
   });
 }

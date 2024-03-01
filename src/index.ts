@@ -3,17 +3,21 @@ import { config as dotenvConfig } from 'dotenv';
 import { createSocketServer } from './createSocketServer';
 import { createServer } from 'http';
 import { registerRoutes } from './registerRoutes';
-import { registerMiddlewares } from './registerMiddlewares';
+import { inboundMiddlewares, outboundMiddlewares } from './middlewares';
 
 try {
   dotenvConfig();
 
   const app = express();
   const httpServer = createServer(app);
+ 
+  app.use('/css', express.static(__dirname + '/pages/css'));
+  app.use('/js', express.static(__dirname + '/pages/js'));
   
-  registerMiddlewares(app);
+  app.use(...inboundMiddlewares(app))
   registerRoutes(app);
-
+  app.use(...outboundMiddlewares(app))
+  
   createSocketServer(httpServer);
   
   httpServer.listen(process.env.PORT, () => {
