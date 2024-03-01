@@ -6,7 +6,7 @@
   "author": "Kleber Rodrigues <kleb3r.jr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/index.ts"
+    "start": "nodemon --watch \"./src/**/*\" -e ts,tsx,js --exec \"ts-node\" ./src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "5.8.1",
