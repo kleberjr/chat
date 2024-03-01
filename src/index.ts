@@ -2,8 +2,8 @@ import express from 'express';
 import { config as dotenvConfig } from 'dotenv';
 import { createSocketServer } from './createSocketServer';
 import { createServer } from 'http';
-import { registerRoutes } from './registerRoutes';
 import { inboundMiddlewares, outboundMiddlewares } from './middlewares';
+import { registerRoutes } from './routes';
 
 try {
   dotenvConfig();
