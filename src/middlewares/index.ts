@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import cookieParserMiddleware from 'cookie-parser';
-import { authenticationMiddleware } from './authenticationMiddleware';
-import { errorMiddleware } from './errorMiddleware';
+import { authenticationMiddleware } from './authentication.middleware';
+import { errorMiddleware } from './error.middleware';
 
 export const inboundMiddlewares = (app: Application) => {
   return [

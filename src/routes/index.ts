@@ -1,6 +1,6 @@
 import { Application } from "express";
-import { registerBaseRoutes } from "./baseRouter";
-import { registerAuthRoutes } from "./authRouter";
+import { registerBaseRoutes } from "./base.router";
+import { registerAuthRoutes } from "./auth.router";
 
 export const registerRoutes = (app: Application) => {
   registerBaseRoutes(app);
