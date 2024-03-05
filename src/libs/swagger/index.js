@@ -1,6 +1,7 @@
 const swaggerAutogen = require('swagger-autogen')();
 
 const outputFilePath = './swagger.json';
+// TODO: generate this array dinamically
 const endpointFilesPath = [
   '../../routes/auth.router.ts', 
   '../../routes/base.router.ts'
@@ -16,35 +17,13 @@ const doc = {
   schemes: ['http', 'https'],
   consumes: ['application/json'],
   produces: ['application/json'],
-  tags: [
-      {
-          "name": "Base",
-          "description": "Endpoints"
-      },
-      {
-          "name": "Auth",
-          "description": "Endpoints"
-      },
-  ],
-  securityDefinitions: {
-      api_key: {
-          type: "apiKey",
-          name: "api_key",
-          in: "header"
-      },
-      petstore_auth: {
-          type: "oauth2",
-          authorizationUrl: "https://petstore.swagger.io/oauth/authorize",
-          flow: "implicit",
-          scopes: {
-              read_pets: "read your pets",
-              write_pets: "modify pets in your account"
-          }
-      }
-  },
+  securityDefinitions: {},
+  // TODO: generate this definitions dynamically
   definitions: {
     Login: {
-      $email: "example@domain.com",
+      $email: {
+        type: "string"
+      },
       $password: "secret"
     }
   }
