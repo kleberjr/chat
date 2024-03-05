@@ -6,6 +6,7 @@ import { InvalidTokenError } from "../errors/invalidToken.error";
 
 const PASSTHROUGH_ROUTES = [
   '/login',
+  '/swagger/',
 ];
 
 export const authenticationMiddleware = (
@@ -22,16 +23,16 @@ export const authenticationMiddleware = (
     return next();
   }
 
-  const sessionToken = req.cookies.session;
-  if (!sessionToken) {
-    throw new MissingCookieError();
-  }
+  // const sessionToken = req.cookies.session;
+  // if (!sessionToken) {
+  //   throw new MissingCookieError();
+  // }
 
-  try {
-    jwt.verify(sessionToken, getFromEnv('SECRET'));
-  } catch (e) {
-    throw new InvalidTokenError();
-  }
+  // try {
+  //   jwt.verify(sessionToken, getFromEnv('SECRET'));
+  // } catch (e) {
+  //   throw new InvalidTokenError();
+  // }
 
   next();
 }

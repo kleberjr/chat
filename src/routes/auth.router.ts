@@ -8,10 +8,20 @@ import { daysToMiliseconds } from "../libs/utils/daysToMilliseconds";
 export const registerAuthRoutes = (app: Application) => {
   app.route('/login')
     .get((req: Request, res: Response) => {
+      // #swagger.tags = ['Auth']
       res.sendFile(join(__dirname, '../pages/login.html'));
     })
 
     .post(async (req: Request, res: Response, next: NextFunction) => {
+      /* 
+        #swagger.tags = ['Auth']
+        #swagger.parameters['body'] = {
+          in: 'body',
+          description: 'Informações do usuário.',
+          required: true,
+          schema: { $ref: "#/definitions/Login" }
+        } 
+      */
       const { email, password } = req.body;
 
       const prisma = new PrismaClient();
@@ -41,6 +51,7 @@ export const registerAuthRoutes = (app: Application) => {
 
   app.route('/logout')
     .post((req: Request, res: Response) => {
+      // #swagger.tags = ['Auth']
       res.clearCookie('session');
       res.send({ message: 'success' });
     });
