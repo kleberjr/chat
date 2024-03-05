@@ -19,21 +19,12 @@ const doc = {
   produces: ['application/json'],
   securityDefinitions: {},
   // TODO: generate this definitions dynamically
-  '@definitions': {
+  definitions: {
     Login: {
-      type: 'object',
-      required: [
-        'email',
-        'password'
-      ],
-      properties: {
-        email: {
-          type: 'string'
-        },
-        password: {
-          type: 'string'
-        }
-      }
+      $email: {
+        type: "string"
+      },
+      $password: "secret"
     }
   }
 }
