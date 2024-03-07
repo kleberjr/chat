@@ -35,14 +35,13 @@ export const registerAuthRoutes = (app: Application) => {
       }
   
       const token = jwt.sign(
-        { email, password },
+        { email },
         process.env.SECRET ?? ''
       );
   
       res.cookie('session', token, {
         maxAge: daysToMiliseconds(2),
         secure: process.env.ENV === 'PROD',
-        httpOnly: true,
         sameSite: 'strict',
       });
   
