@@ -42,6 +42,7 @@ export const registerAuthRoutes = (app: Application) => {
       res.cookie('session', token, {
         maxAge: daysToMiliseconds(2),
         secure: process.env.ENV === 'PROD',
+        httpOnly: true,
         sameSite: 'strict',
       });
   
