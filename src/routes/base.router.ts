@@ -4,6 +4,6 @@ import { join } from "path";
 export const registerBaseRoutes = (app: Application) => {
   app.get('/home', (req: Request, res: Response) => {
     // #swagger.tags = ['Base']
-    res.sendFile(join(__dirname, '../frontend/home.html'));
+    res.sendFile(join(__dirname, '../frontend/html/home.html'));
   });
 }
