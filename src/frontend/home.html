@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Home</title>
+
+    <link href="css/home.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <main>
+      <div id="chat-container">
+        <div class="my-message-container">
+          mensagem enviada por mim
+        </div>
+      </div>
+
+      <div id="input-container">
+        <input id="message" type="text">
+        <button id="send-btn">Enviar</button>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>

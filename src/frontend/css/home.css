@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+
+    background-color: black;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    width: 100%;
+    height: 100%;
+
+    /* border: 1px solid green; */
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+    
+    /* border: 1px solid yellow; */
+}
+
+.my-message-container {
+    display: flex;
+    justify-content: flex-end;   
+}
+
+.message-container {
+    display: flex;
+    gap: 10px;
+    
+    /* border: 1px solid white; */
+}
+
+.sender-section {
+    /* border: 1px solid red; */
+
+    min-width: 85px;
+
+    font-weight: bold;
+}
+
+.content-section {
+    font-weight: lighter;
+
+    /* border: 1px solid blue; */
+}
+
+#input-container {
+    display: flex;
+    gap: 10px;
+
+    padding: 10px;
+    
+    /* border: 1px solid yellow; */
+}
+
+#message {
+    flex-grow: 2;
+}

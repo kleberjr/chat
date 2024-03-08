@@ -9,7 +9,7 @@ export const registerAuthRoutes = (app: Application) => {
   app.route('/login')
     .get((req: Request, res: Response) => {
       // #swagger.tags = ['Auth']
-      res.sendFile(join(__dirname, '../pages/login.html'));
+      res.sendFile(join(__dirname, '../frontend/login.html'));
     })
 
     .post(async (req: Request, res: Response, next: NextFunction) => {

@@ -12,8 +12,8 @@ try {
   const app = express();
   const httpServer = createServer(app);
  
-  app.use('/css', express.static(__dirname + '/pages/css'));
-  app.use('/js', express.static(__dirname + '/pages/js'));
+  app.use('/css', express.static(__dirname + '/frontend/css'));
+  app.use('/js', express.static(__dirname + '/frontend/js'));
 
   app.use(...inboundMiddlewares(app))
   registerRoutes(app);
