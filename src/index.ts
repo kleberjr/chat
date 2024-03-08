@@ -1,10 +1,10 @@
 import express from 'express';
 import { config as dotenvConfig } from 'dotenv';
 import { createServer } from 'http';
-import { inboundMiddlewares, outboundMiddlewares } from './middlewares';
-import { addSwagger } from './libs/swagger/addSwagger';
 import { registerRoutes } from './routes';
+import { addSwagger } from './libs/swagger';
 import { createSocketServer } from './socket';
+import { inboundMiddlewares, outboundMiddlewares } from './middlewares';
 
 try {
   dotenvConfig();
