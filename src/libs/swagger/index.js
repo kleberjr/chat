@@ -4,7 +4,8 @@ const outputFilePath = './swagger.json';
 // TODO: generate this array dinamically
 const endpointFilesPath = [
   '../../routes/auth.router.ts', 
-  '../../routes/base.router.ts'
+  '../../routes/base.router.ts',
+  '../../routes/dev.router.ts',
 ];
 
 const doc = {
@@ -21,9 +22,7 @@ const doc = {
   // TODO: generate this definitions dynamically
   definitions: {
     Login: {
-      $email: {
-        type: "string"
-      },
+      $email: "string",
       $password: "secret"
     }
   }

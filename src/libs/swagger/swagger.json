@@ -79,6 +79,27 @@
           }
         }
       }
+    },
+    "/dev/login/{userId}": {
+      "post": {
+        "tags": [
+          "Dev"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -86,13 +107,8 @@
       "type": "object",
       "properties": {
         "email": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "example": "string"
-            }
-          }
+          "type": "string",
+          "example": "string"
         },
         "password": {
           "type": "string",

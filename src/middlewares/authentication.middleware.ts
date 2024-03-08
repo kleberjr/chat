@@ -5,6 +5,7 @@ import { MissingCookieError } from "../errors/missingCookie.error";
 import { InvalidTokenError } from "../errors/invalidToken.error";
 
 const PASSTHROUGH_ROUTES = [
+  '/dev',
   '/login',
   '/logout',
   '/swagger',
