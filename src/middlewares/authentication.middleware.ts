@@ -6,7 +6,10 @@ import { InvalidTokenError } from "../errors/invalidToken.error";
 
 const PASSTHROUGH_ROUTES = [
   '/login',
-  '/swagger/',
+  '/logout',
+  '/swagger',
+  '/css',
+  '/js',
 ];
 
 export const authenticationMiddleware = (
@@ -19,20 +22,31 @@ export const authenticationMiddleware = (
   console.log('>>> METHOD:', req.method);
   console.log('>>> PATH:', req.path);
 
-  if (PASSTHROUGH_ROUTES.includes(req.path)) {
+  if (isPassthroughRoute(req.path)) {
     return next();
   }
 
-  // const sessionToken = req.cookies.session;
-  // if (!sessionToken) {
-  //   throw new MissingCookieError();
-  // }
+  const sessionToken = req.cookies.session;
+  if (!sessionToken) {
+    throw new MissingCookieError();
+  }
 
-  // try {
-  //   jwt.verify(sessionToken, getFromEnv('SECRET'));
-  // } catch (e) {
-  //   throw new InvalidTokenError();
-  // }
+  try {
+    jwt.verify(sessionToken, getFromEnv('SECRET'));
+  } catch (e) {
+    throw new InvalidTokenError();
+  }
 
   next();
+}
+
+const isPassthroughRoute = (path: string) => {
+  for (const route of PASSTHROUGH_ROUTES) {
+    if (path.startsWith(route)) {
+      console.log('>>> path starts with:', route);
+      return true;
+    }
+  }
+
+  return false;
 }
