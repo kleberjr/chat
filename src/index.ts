@@ -3,8 +3,8 @@ import { config as dotenvConfig } from 'dotenv';
 import { createServer } from 'http';
 import { registerRoutes } from './routes';
 import { addSwagger } from './libs/swagger';
-import { createSocketServer } from './socket';
 import { inboundMiddlewares, outboundMiddlewares } from './middlewares';
+import { startSocketServer } from './socket';
 
 try {
   dotenvConfig();
@@ -21,7 +21,7 @@ try {
 
   addSwagger(app);
 
-  createSocketServer(httpServer);
+  startSocketServer(httpServer);
   
   httpServer.listen(process.env.PORT, () => {
     console.log('🚀 Chat server is running at http://localhost:3000');

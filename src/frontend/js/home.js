@@ -24,25 +24,18 @@ messageInput.addEventListener("keypress", function(event) {
   }
 });
 
-const socket = io();
+const socket = io({
+  reconnectionDelay: 5000, // defaults to 1000
+  reconnectionDelayMax: 5000 // defaults to 5000
+});
 
-socket.on('chat message', (msg) => {
-  console.log('mensagem recebida!');
-  const chatContainer = document.getElementById('chat-container');
+socket.on("connect", () => {
+  console.log("recovered?", socket.recovered);
 
-  const messageContainer = document.createElement('div');
-  messageContainer.className = 'message-container';
-  
-  const senderSection = document.createElement('div');
-  senderSection.className = 'sender-section';
-  senderSection.innerText = msg.author + ' >';
-  
-  const contentSection = document.createElement('div');
-  contentSection.className = 'content-section';
-  contentSection.innerText = msg.message;
-
-  messageContainer.appendChild(senderSection);
-  messageContainer.appendChild(contentSection);
-
-  chatContainer.appendChild(messageContainer);
-});3  
+  setTimeout(() => {
+    if (socket.io.engine) {
+      // close the low-level connection and trigger a reconnection
+      socket.io.engine.close();
+    }
+  }, 5000);
+});

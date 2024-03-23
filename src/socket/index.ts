@@ -1,1 +1,1 @@
-export * from './createSocketServer';
+export * from './startSocketServer';
