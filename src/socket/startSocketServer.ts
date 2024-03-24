@@ -1,11 +1,8 @@
-import { Server as HttpServer } from "http";
+import { Server as HttpServer, IncomingMessage } from "http";
 import { DisconnectReason, Server as IOServer } from "socket.io";
 import { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from "./interfaces";
 import { IOSocket, UserPayload } from "./types";
-import { InvalidTokenError, MissingCookieError } from "../errors";
 import jwt from 'jsonwebtoken';
-import { getFromEnv } from "../libs/utils";
-
 
 export const startSocketServer = async (httpServer: HttpServer) => {
   const io = 
@@ -29,7 +26,7 @@ export const startSocketServer = async (httpServer: HttpServer) => {
     enableStateRecovery(socket);
 
     socket.on('chatMessage', (message: string) => {
-      const userPayload = getUserPayload(socket);
+      const userPayload = getUserPayload(socket.request);
 
       // Broadcast the message to every socket but this one
       socket.broadcast.emit('chatMessage', userPayload, message);
@@ -47,24 +44,14 @@ const enableStateRecovery = (socket: IOSocket) => {
   socket.emit('enableStateRecovery');
 };
 
-const getUserPayload = (socket: IOSocket): UserPayload => {
-  const cookie = socket.request.headers.cookie;
-
-  if (!cookie) {
-    throw new MissingCookieError();
-  }
-
-  const [cookieName, cookieValue] = cookie.split('=');
-
-  try {
-    const payload = jwt.verify(cookieValue, getFromEnv('SECRET'));
+const getUserPayload = (request: IncomingMessage): UserPayload => {
+  const cookie = request.headers.cookie!;
+  const [cookieName, token] = cookie.split('=');
+  const payload = jwt.decode(token) ?? {};
     
-    return {
-      id: payload['id'],
-      name: payload['name'],
-      email: payload['email'],
-    };
-  } catch (e) {
-    throw new InvalidTokenError();
-  }
+  return {
+    id: payload['id'],
+    name: payload['name'],
+    email: payload['email'],
+  };
 }
