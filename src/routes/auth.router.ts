@@ -35,7 +35,7 @@ export const registerAuthRoutes = (app: Application) => {
       }
   
       const token = jwt.sign(
-        { email },
+        { id: user.id, name: user.name, email },
         process.env.SECRET ?? ''
       );
   
