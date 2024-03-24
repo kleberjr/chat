@@ -31,37 +31,50 @@ main {
 #chat-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 
     padding: 10px;
-    
     /* border: 1px solid yellow; */
 }
 
-.my-message-container {
-    display: flex;
-    justify-content: flex-end;   
+.self-message-container {
+    justify-content: end;
+    align-self: end;
+    
+    max-width: 70%;
+    padding: 5px;
+    /* border: 1px solid white; */
+    
+    background-color: #048a84;
+    border-radius: 5px;
+    
+    font-weight: lighter;
 }
 
 .message-container {
     display: flex;
     gap: 10px;
     
+    width: 70%;
     /* border: 1px solid white; */
 }
 
-.sender-section {
-    /* border: 1px solid red; */
 
+.sender-section {
     min-width: 85px;
+    /* border: 1px solid red; */
 
     font-weight: bold;
 }
 
 .content-section {
     font-weight: lighter;
-
+    
+    padding: 5px;
+    border-radius: 5px;
     /* border: 1px solid blue; */
+
+    background-color: gray;
 }
 
 #input-container {
@@ -69,7 +82,6 @@ main {
     gap: 10px;
 
     padding: 10px;
-    
     /* border: 1px solid yellow; */
 }
 
