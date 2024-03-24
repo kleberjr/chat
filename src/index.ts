@@ -24,7 +24,7 @@ try {
   startSocketServer(httpServer);
   
   httpServer.listen(process.env.PORT, () => {
-    console.log('🚀 Chat server is running at http://localhost:3000');
+    console.log('🚀 Chat server is running at http://localhost:3000\n');
   });
 } catch (e) {
   console.log(e);

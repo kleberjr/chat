@@ -22,6 +22,7 @@ export const authenticationMiddleware = (
   console.log('>>> Request passing through Authentication Middleware...');
   console.log('>>> METHOD:', req.method);
   console.log('>>> PATH:', req.path);
+  console.log('');
 
   if (isPassthroughRoute(req.path)) {
     return next();
@@ -44,7 +45,6 @@ export const authenticationMiddleware = (
 const isPassthroughRoute = (path: string) => {
   for (const route of PASSTHROUGH_ROUTES) {
     if (path.startsWith(route)) {
-      console.log('>>> path starts with:', route);
       return true;
     }
   }
